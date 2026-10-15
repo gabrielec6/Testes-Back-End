@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Testes Back End</title>
+<link rel="stylesheet" href="TesteBackEnd.css">
+</head>
+<body>
+
+<header id="inicio">
+<h1>Testes Back End</h1>
+</header>
+
+<main>
+
+<section id="introducao">
+<h2>Bem-vindo ao Back End Testing</h2>
+
+<img src="imagens/O que é Front-end, Back-end e Full Stack_ Aprenda as diferenças entre essas áreas.jpg" alt="Ilustração da página inicial">
+
+<p>O <strong>back end</strong> é a parte do sistema que roda no servidor: regras de negócio, banco de dados, APIs e segurança. Testá-lo garante que tudo funcione antes de chegar ao usuário.</p>
+<aside class="destaque">
+<p>Nesta página você vai ver os documentos de teste, como elaborar casos de teste, executar, monitorar, avaliar resultados e se comunicar com a equipe de automação.</p>
+</aside>
+
+</section>
+
+<section id="documentos">
+<h2>A. Documentos de Testes</h2>
+<img src="imagens/The student fills in the answer to the exam test school and university examination education concept _ Premium Vector.jpg" alt="Documentos usados no processo de teste">
+<p>Planejar, registrar e reportar</p>
+
+<p>Os documentos de teste registram o que será testado, como, o que aconteceu e qual foi o resultado final.</p>
+
+<article>
+<h3>1. Plano de Teste</h3>
+<p>Define o <strong>escopo, a estratégia, os recursos, o cronograma e os riscos</strong> dos testes.</p>
+<ul>
+<li>Objetivos e itens a testar (ex.: API de pedidos, banco de dados)</li>
+<li>Tipos de teste: unitário, integração, desempenho, segurança</li>
+<li>Ambiente, ferramentas e responsáveis</li>
+<li>Critérios de entrada e saída</li>
+</ul>
+</article>
+
+<article>
+<h3>2. Casos de Teste</h3>
+<p>Descrevem cada verificação: dados de entrada, passos, resultado esperado e condições prévias. Veja a seção <a href="#caso-de-teste"><strong>Caso de Teste</strong></a>.</p>
+</article>
+
+<article>
+<h3>3. Relatório de Incidentes de Testes</h3>
+<p>Registra cada falha encontrada para que seja corrigida.</p>
+<div class="tabela">
+<table>
+<thead><tr><th>Campo</th><th>Exemplo</th></tr></thead>
+<tbody>
+<tr><td>Identificador</td><td>INC-012</td></tr>
+<tr><td>Descrição</td><td>API retorna 500 ao cadastrar e-mail duplicado</td></tr>
+<tr><td>Passos para reproduzir</td><td>Enviar POST /usuarios duas vezes com o mesmo e-mail</td></tr>
+<tr><td>Severidade</td><td>Alta</td></tr>
+<tr><td>Status</td><td>Aberto</td></tr>
+</tbody>
+</table>
+</div>
+</article>
+
+<article>
+<h3>4. Relatório de Resumo de Teste</h3>
+<p>Emitido ao final, resume o que foi executado e conclui se o sistema está pronto.</p>
+<ul>
+<li>Total de casos executados, aprovados e reprovados</li>
+<li>Incidentes abertos e corrigidos</li>
+<li>Cobertura alcançada</li>
+<li>Recomendação: liberar ou não o software</li>
+</ul>
+</article>
+</section>
+
+
+<section id="caso-de-teste">
+<h2>B. Elaboração do Caso de Teste</h2>
+<img src="imagens/download.jpg" alt="Estrutura de um caso de teste">
+
+<h3>Conceito</h3>
+
+<p>Um <strong>caso de teste</strong> é um conjunto de condições, entradas e passos que verifica se uma funcionalidade se comporta como esperado. Cada caso deve ter um <em>resultado esperado</em> claro.</p>
+<aside class="destaque">
+<p><strong>Boas práticas:</strong> ser objetivo, independente dos outros casos, repetível e rastreável até um requisito.</p>
+</aside>
+
+<h3>Estrutura básica</h3>
+<ul>
+<li>ID e título</li>
+<li>Pré-condições</li>
+<li>Passos e dados de entrada</li>
+<li>Resultado esperado</li>
+<li>Resultado obtido e status</li>
+</ul>
+
+<h3>Exemplos</h3>
+<div class="tabela">
+<table>
+<thead><tr><th>ID</th><th>Cenário</th><th>Entrada</th><th>Resultado esperado</th></tr></thead>
+<tbody>
+<tr><td>CT-01</td><td>Login válido</td><td><code>POST /login</code> com usuário e senha corretos</td><td>Status 200 e token retornado</td></tr>
+<tr><td>CT-02</td><td>Login inválido</td><td>Senha incorreta</td><td>Status 401 e mensagem de erro</td></tr>
+<tr><td>CT-03</td><td>Cadastro de cliente</td><td>Dados completos</td><td>Registro salvo no banco, status 201</td></tr>
+<tr><td>CT-04</td><td>E-mail duplicado</td><td>E-mail já existente</td><td>Status 409, nada é gravado</td></tr>
+<tr><td>CT-05</td><td>Consulta de pedido</td><td><code>GET /pedidos/10</code></td><td>Retorna o pedido 10 em JSON</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+
+<section id="execucao">
+<h2>C. Execução do Programa</h2>
+
+<img src="imagens/Checklist por WhatsApp_ O Método Simples para Padronizar sua Operação.jpg" alt="Execução dos casos de teste">
+
+<p>Na execução, os casos de teste são rodados no ambiente preparado, comparando o <strong>resultado obtido</strong> com o <strong>esperado</strong>.</p>
+
+<h3>Passos da execução</h3>
+<ol>
+<li>Preparar o ambiente e o banco de dados de teste</li>
+<li>Subir a aplicação (servidor e dependências)</li>
+<li>Executar os casos manualmente ou com ferramentas (Postman, JUnit, pytest)</li>
+<li>Registrar o resultado: aprovado, reprovado ou bloqueado</li>
+<li>Abrir incidentes para as falhas encontradas</li>
+<li>Repetir os testes após as correções (reteste e regressão)</li>
+</ol>
+
+<h3>Exemplo prático</h3>
+<p>Comando para rodar os testes automatizados de um projeto Python:</p>
+<p><code>pytest tests/ --verbose</code></p>
+    
+</section>
+
+
+<section id="monitoramento">
+<h2>D. Monitoramento e Controle</h2>
+    
+<img src="imagens/Facilit Tecnologia - Gestão de Planejamento Estratégico, Metas, Indicadores, Projetos e Reuniões.jpg" alt="Painel de acompanhamento dos testes">
+      
+<p>Monitorar é acompanhar o andamento dos testes; controlar é tomar ações quando algo foge do plano.</p>
+
+<h3>O que acompanhar</h3>
+<ul>
+<li>Casos executados x planejados</li>
+<li>Quantidade de incidentes abertos e fechados</li>
+<li>Tempo gasto e prazos</li>
+<li>Cobertura de código e de requisitos</li>
+<li>Desempenho do servidor (tempo de resposta, uso de CPU e memória)</li>
+</ul>
+
+<h3>Ações de controle</h3>
+<ul>
+<li>Redefinir prioridades quando houver atraso</li>
+<li>Reforçar testes em módulos com muitos defeitos</li>
+<li>Reavaliar riscos e atualizar o plano de teste</li>
+</ul>
+
+<div class="tabela">
+<table>
+<thead><tr><th>Indicador</th><th>Meta</th><th>Atual</th></tr></thead>
+<tbody>
+<tr><td>Casos executados</td><td>100</td><td>72</td></tr>
+<tr><td>Casos aprovados</td><td>95%</td><td>88%</td></tr>
+<tr><td>Incidentes críticos abertos</td><td>0</td><td>2</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="avaliacao">
+<h2>E. Avaliação de Resultados</h2>
+
+<img src="imagens/Conceito de realização de resultados em equipe _ Vetor Grátis.jpg" alt="Análise dos resultados dos testes">
+    
+<p>Ao final, os resultados são analisados para decidir se o software atende aos critérios de qualidade.</p>
+
+<h3>Como avaliar</h3>
+<ul>
+<li>Comparar os resultados com os critérios de saída do plano de teste</li>
+<li>Calcular a taxa de aprovação: <code>aprovados / executados x 100</code></li>
+<li>Analisar a densidade e a gravidade dos defeitos</li>
+<li>Verificar a cobertura dos requisitos</li>
+<li>Identificar riscos que ainda restam</li>
+</ul>
+<aside class="destaque">
+<p><strong>Exemplo:</strong> de 100 casos, 94 aprovados = 94% de aprovação. Se a meta era 95%, é preciso corrigir e retestar antes de liberar.</p>
+</aside>
+<p>A avaliação alimenta o Relatório de Resumo de Teste e as lições aprendidas para os próximos projetos.</p>
+</section>
+
+
+<section id="comunicacao">
+<h2>F. Comunicação com a Equipe de Automação de Testes</h2>
+
+<img src="imagens/download (1).jpg" alt="Comunicação entre testadores e automação">
+
+<p>A equipe de automação transforma casos de teste manuais em scripts. Uma boa comunicação evita retrabalho e testes desatualizados.</p>
+
+<h3>Boas práticas</h3>
+<ul>
+<li>Compartilhar casos de teste claros e priorizar os que mais se repetem (regressão)</li>
+<li>Informar mudanças de requisitos e de APIs o quanto antes</li>
+<li>Alinhar ambientes, dados de teste e ferramentas</li>
+<li>Reportar falhas dos scripts com evidências (logs e prints)</li>
+<li>Fazer reuniões curtas e usar canais como chat e quadros de tarefas</li>
+</ul>
+
+<h3>Exemplo de mensagem</h3>
+<aside class="destaque">
+<p>"Pessoal, o endpoint <code>/pedidos</code> passou a exigir o campo <code>cliente_id</code>. Por favor atualizem os scripts CT-05 e CT-06 até sexta."</p>
+</aside>
+</section>
+
+</main>
+
+
+<footer>
+<p>Site criado por Gabriele &copy;2026</p>
+</footer>
+</body>
+</html>
